@@ -4510,6 +4510,10 @@ realpath-native@^1.0.0:
   dependencies:
     util.promisify "^1.0.0"
 
+redux-saga@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
+
 redux-source-utils@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/redux-source-utils/-/redux-source-utils-1.0.4.tgz#425818bed03e1610ee665ff6b13f2f8f588a5de7"
