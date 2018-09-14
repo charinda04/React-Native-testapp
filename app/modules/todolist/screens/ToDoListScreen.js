@@ -5,19 +5,76 @@ import {
   Text,
   ScrollView,
   NetInfo,
-  Button
+  Button,
+  TextInput,
 } from 'react-native';
+import ToDoListActions from '../actions/ToDoListAction';
 
-class HomeScreen extends Component {
-  state = {  }
+class ToDoListScreen extends Component {
+
+
+  constructor(props){
+    super(props);
+
+    state = { 
+      text: '',
+   }
+  }
+  
+
+  onHandleAddToDoList = () => {
+    // console.log(this.state.text);
+    // console.log('-------------------');
+    
+    this.props.dispatch(ToDoListActions.addToDoList(this.state.text));
+    
+  }
+
+  handleToDoListChange = (text: any) => {
+    this.setState({text});
+    // console.log(this.state.text);
+  }
+
+
+
   render() { 
     return ( 
     <View style={{flex: 1}}>
-      
-      <Text>Todolist page</ Text>
+      <View style={{
+          // alignItems: 'center',
+          padding: 20,
+          paddingVertical: 5,
+        }}>
+        {this.props.list.map((item,key)=>(
+          <Text key={key}>{item}</Text>)
+        )}
+        {/* <Text >{this.props.list}</ Text> */}
+      </View>
+      <View style={{padding: 10}}>
+        
+        <TextInput
+          key='input'
+          style={{height: 40}}
+          placeholder="Type here to add todolist!"
+          onChangeText={text => this.setState({text})}
+          onSubmitEditing={this.onHandleAddToDoList}
+          onChangeText={this.handleToDoListChange}
+        
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {/* {this.state.text.split(' ').map((word) => word && '🍕').join(' ')} */}
+        </Text>
+      </View>
     </ View> 
     );
   }
 }
- 
-export default HomeScreen;
+
+const mapStateToProps = (state) => {
+  return {
+    list: state.todolist.list,
+  };
+}
+
+
+export default connect(mapStateToProps)(ToDoListScreen);
